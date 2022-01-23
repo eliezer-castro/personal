@@ -6,6 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  cursor: none;
 }
 
 .divider {
@@ -27,8 +28,6 @@ a {
 }
 
 body {
-
-
   width: 100%;
   height: 100vh;
   background-color: $whiteColor;
@@ -277,4 +276,85 @@ footer {
   p {
     margin-top: 15px;
   }
+}
+
+.cursor {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background: #010101;
+  transition: 0.5s;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition-duration: .1ms;
+  transition-timing-function: ease-out;
+  animation: cursorAnim .5s infinite alternate;
+}
+
+@keyframes cursorAnim {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(.7);
+  }
+}
+
+@keyframes cursorAnim2 {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(.4);
+  }
+}
+
+@keyframes cursorAnim3 {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(3);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.expand {
+  animation: cursorAnim3 .5s forwards;
+  border: 1px solid red;
+}
+
+ul li:hover~.cursor {
+  transform: scale(6);
+}
+
+/* Animação */ 
+
+[data-anime]{
+  opacity: 0;
+  transition: .3s;
+}
+
+
+[data-anime="top"]{
+  transform: translate3d(-0px, -50px, 0px);
+}
+
+[data-anime="left"]{
+  transform: translate3d(-50px, 0px, 0px);
+}
+
+[data-anime].animate{
+  opacity: 1;
+  transform: translate3d(0px, 0px, 0px);
 }
