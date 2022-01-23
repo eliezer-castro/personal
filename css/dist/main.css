@@ -17,12 +17,32 @@ h2 {
 }
 
 a {
+  position: relative;
   margin-top: 16px;
   display: inline-block;
   font-weight: 500;
   font-size: 16px;
   line-height: 150%;
   color: #151619;
+}
+
+ul li a:after {
+  content: "";
+  position: absolute;
+  background-color: #151619;
+  height: 2px;
+  width: 0;
+  left: 0;
+  bottom: -5px;
+  transition: 0.3s;
+}
+
+ul li a:hover {
+  color: #000;
+}
+
+ul li a:hover:after {
+  width: 100%;
 }
 
 body {
@@ -55,6 +75,11 @@ header nav .nav-wrapper ul li .active-link {
   font-weight: bold;
 }
 
+.header-content .header-text {
+  transition-duration: 0.1ms;
+  transition-timing-function: ease-out;
+  animation: fade-anime-top 0.8s;
+}
 .header-content .header-text .tag-welcome {
   font-weight: 500;
   font-size: 16px;
@@ -65,6 +90,9 @@ header nav .nav-wrapper ul li .active-link {
   font-weight: bold;
   font-size: 48px;
   line-height: 150%;
+  transition-duration: 0.1ms;
+  transition-timing-function: ease-out;
+  animation: fade-anime-top 0.8s;
 }
 .header-content .header-text p {
   max-width: 530px;
@@ -88,8 +116,16 @@ header nav .nav-wrapper ul li .active-link {
   background: linear-gradient(266.69deg, #def0cc -23.4%, #aee6f7 43.9%, #e6f1e4 113.17%);
   border-radius: 50px;
 }
+.header-content .header-image {
+  transition-duration: 0.1ms;
+  transition-timing-function: ease-out;
+  animation: fade-anime-top 0.8s ease;
+}
 .header-content .header-image img {
   width: 100%;
+  transition-duration: 0.1ms;
+  transition-timing-function: ease-out;
+  animation: alternating-elevation 3s ease infinite;
 }
 
 .services {
@@ -280,14 +316,60 @@ footer .links ul {
   border: 1px solid red;
 }
 
-ul li:hover ~ .cursor {
+ul li a:hover ~ .cursor {
   transform: scale(6);
 }
 
 /* Animação */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-anime-top {
+  from {
+    opacity: 0;
+    transform: translate3d(0px, -50px, 0px);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+  }
+}
+@keyframes alternating-elevation {
+  0% {
+    opacity: 1;
+    transform: translate3d(0px, -50px, 0px);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0px, -50px, 0px);
+  }
+}
+@keyframes fade-anime-right {
+  from {
+    opacity: 0;
+    transform: translate3d(0px, 0px, 50px);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+  }
+}
 [data-anime] {
   opacity: 0;
   transition: 0.3s;
+}
+
+[data-anime=fade] {
+  opacity: 1;
 }
 
 [data-anime=top] {

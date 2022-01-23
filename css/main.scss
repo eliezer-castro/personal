@@ -19,12 +19,33 @@ h2 {
 }
 
 a {
+  position: relative;
   margin-top: 16px;
   display: inline-block;
   font-weight: 500;
   font-size: 16px;
   line-height: 150%;
   color: $darkColor;
+}
+
+ul li a:after{
+  
+  content: '';
+  position: absolute;
+  background-color:$darkColor;
+  height: 2px;
+  width: 0;
+  left: 0;
+  bottom: -5px;
+  transition: 0.3s;
+}
+
+ul li a:hover{
+  color: #000;
+}
+
+ul li a:hover:after{
+  width: 100%;
 }
 
 body {
@@ -63,17 +84,25 @@ header {
 
 .header-content {
   .header-text {
+    transition-duration: .1ms;
+      transition-timing-function: ease-out;
+      animation: fade-anime-top .8s ;
     .tag-welcome {
       font-weight: 500;
       font-size: 16px;
       line-height: 21px;
       letter-spacing: 0.2px;
+      
     }
 
     h1 {
       font-weight: bold;
       font-size: 48px;
       line-height: 150%;
+      transition-duration: .1ms;
+      transition-timing-function: ease-out;
+      animation: fade-anime-top .8s ;
+      
     }
 
     p {
@@ -105,21 +134,24 @@ header {
   }
 
   .header-image {
+    transition-duration: .1ms;
+    transition-timing-function: ease-out;
+    animation: fade-anime-top .8s ease;
     img {
-      width: 100%;
+    width: 100%;
+    transition-duration: .1ms;
+    transition-timing-function: ease-out;
+    animation: alternating-elevation 3s ease infinite;
     }
   }
 }
 
 .services {
   margin-top: 60px;
-
   .services-content {
     margin-top: 16px;
-
     .service-item {
-      padding: 0;
-
+      padding: 0; 
       h3 {
         font-weight: 500;
         font-size: 21px;
@@ -334,17 +366,71 @@ footer {
   border: 1px solid red;
 }
 
-ul li:hover~.cursor {
+ul li a:hover~.cursor {
   transform: scale(6);
 }
 
 /* Animação */ 
+
+@keyframes fade-in{
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-anime-top {
+  from {
+    opacity: 0;
+    transform: translate3d(0px, -50px, 0px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+  }
+}
+
+
+@keyframes alternating-elevation {
+  0% {
+    opacity: 1;
+    transform: translate3d(0px, -50px, 0px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+  }
+  100%{
+    opacity: 1;
+    transform: translate3d(0px, -50px, 0px);
+  }
+}
+
+@keyframes fade-anime-right {
+  from {
+    opacity: 0;
+    transform: translate3d(0px, 0px, 50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+  }
+}
 
 [data-anime]{
   opacity: 0;
   transition: .3s;
 }
 
+[data-anime="fade"]{
+  opacity: 1;
+}
 
 [data-anime="top"]{
   transform: translate3d(-0px, -50px, 0px);
@@ -358,3 +444,6 @@ ul li:hover~.cursor {
   opacity: 1;
   transform: translate3d(0px, 0px, 0px);
 }
+
+
+
